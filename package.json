@@ -1,0 +1,16 @@
+{
+  "name": "word-switcher",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "wp-scripts build --experimental-modules",
+    "start": "wp-scripts start --experimental-modules"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^15.9.0",
+    "@wordpress/rich-text": "^7.36.0",
+    "@wordpress/scripts": "^31.1.0"
+  },
+  "devDependencies": {
+    "@wordpress/interactivity": "^6.37.0"
+  }
+}

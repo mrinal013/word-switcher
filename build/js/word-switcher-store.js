@@ -1,0 +1,1 @@
+import{getContext as t,store as e}from"@wordpress/interactivity";e("devblog/word-switcher-core-blocks",{state:{get currentWord(){const e=t();return e.words[e.currentIndex]}},callbacks:{init(){const e=t();setInterval(()=>{e.isFading=!0,setTimeout(()=>{e.isFading=!1,e.currentIndex=(e.currentIndex+1)%e.words.length},500)},5e3)}}});
