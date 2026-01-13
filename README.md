@@ -1,4 +1,4 @@
-# Word Switcher - Add word switching functionality in Gutenberg
+# Word Switch - Add word switching functionality in Gutenberg
 
 ## Description
 
@@ -14,7 +14,7 @@ A lightweight WordPress plugin that adds word-switching functionality to Gutenbe
 
 Simply select the words you want to switch, then click ‘Mark as Word Switcher Area’ from the Word Formatter toolbar to enable dynamic word switching in your content.
 
-![Word Switcher](word-switcher.png?raw=true "Word Switcher")
+![Word Switch](word-switch.png?raw=true "Word Switch")
 
 Currently, the comma ( , ) is the only supported separator. Support for custom and flexible separator characters is under development and will be available soon.
 
@@ -24,13 +24,13 @@ Currently, the comma ( , ) is the only supported separator. Support for custom a
 
    ```bash
    cd wp-content/plugins
-   git clone [repository-url] word-switcher
+   git clone [repository-url] word-switch
    ```
 
 2. Install dependencies:
 
    ```bash
-   cd word-switcher
+   cd word-switch
    npm install
    ```
 

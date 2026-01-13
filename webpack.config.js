@@ -14,10 +14,10 @@ module.exports = [
         "resources/js",
         "register-format-type.js"
       ),
-      "css/word-switcher-styles": path.resolve(
+      "css/word-switch-styles": path.resolve(
         process.cwd(),
-        "resources/css",
-        "word-switcher-styles.scss"
+        "resources/scss",
+        "word-switch-styles.scss"
       ),
     },
   },
@@ -26,10 +26,10 @@ module.exports = [
     ...defaultConfigModule,
     ...{
       entry: {
-        "js/word-switcher-store": path.resolve(
+        "js/word-switch-store": path.resolve(
           process.cwd(),
           "resources/js",
-          "word-switcher-store.js"
+          "word-switch-store.js"
         ),
       },
     },

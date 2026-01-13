@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name:         Word Switcher
- * Description:         Add word swithing capability.
+ * Plugin Name:         Word Switch
+ * Description:         Add word switching capability.
  * Version:             1.0.0
  * Requires at least:   6.7
  * Requires PHP:        7.4
  * Author:              mrinal013
  * License:             GPL-2.0-or-later
- * Text Domain:         word-switcher
+ * Text Domain:         word-switch
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,18 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'WS_FORMAT_SCRIPT' ) ) {
-	define( 'WS_FORMAT_SCRIPT', 'word-switcher-register-format-type' );
+	define( 'WS_FORMAT_SCRIPT', 'word-switch-register-format-type' );
 }
 
 if ( ! defined( 'WS_IAPI_SCRIPT' ) ) {
-	define( 'WS_IAPI_SCRIPT', 'word-switcher-interactivity-api' );
+	define( 'WS_IAPI_SCRIPT', 'word-switch-interactivity-api' );
 }
 
 if ( ! defined( 'WS_STYLES' ) ) {
-	define( 'WS_STYLES', 'word-switcher-styles' );
+	define( 'WS_STYLES', 'word-switch-styles' );
 }
 
-function word_switcher_register_assets() {
+function word_switch_register_assets() {
 	$dir = plugin_dir_path( __FILE__ );
 	// Register the Format API script for the editor.
 	$script_asset = require "$dir/build/js/register-format-type.asset.php";
@@ -40,33 +40,33 @@ function word_switcher_register_assets() {
 	);
 
 	// Register the Interactivity API script for the editor.
-	$script_interactivity_api_asset = require "$dir/build/js/word-switcher-store.asset.php";
+	$script_interactivity_api_asset = require "$dir/build/js/word-switch-store.asset.php";
 
 	wp_register_script_module(
 		WS_IAPI_SCRIPT,
-		plugins_url( 'build/js/word-switcher-store.js', __FILE__ ),
+		plugins_url( 'build/js/word-switch-store.js', __FILE__ ),
 		$script_interactivity_api_asset['dependencies'],
 		$script_interactivity_api_asset['version']
 	);
 
 	wp_register_style(
 		WS_STYLES,
-		plugins_url( 'build/css/word-switcher-styles.css', __FILE__ ),
+		plugins_url( 'build/css/word-switch-styles.css', __FILE__ ),
 		array(),
-		filemtime( plugin_dir_path( __FILE__ ) . 'build/css/word-switcher-styles.css' )
+		filemtime( plugin_dir_path( __FILE__ ) . 'build/css/word-switch-styles.css' )
 	);
 }
-add_action( 'init', 'word_switcher_register_assets' );
+add_action( 'init', 'word_switch_register_assets' );
 
-function word_switcher_enqueue_block_editor_assets() {
+function word_switch_enqueue_block_editor_assets() {
 	wp_enqueue_script( WS_FORMAT_SCRIPT );
 	wp_enqueue_script( WS_IAPI_SCRIPT );
 }
 
-add_action( 'enqueue_block_editor_assets', 'word_switcher_enqueue_block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'word_switch_enqueue_block_editor_assets' );
 
-function word_switcher_render_block( $block_content, $block ) {
-	if ( strpos( $block_content, 'class="word-switcher' ) === false ) {
+function word_switch_render_block( $block_content, $block ) {
+	if ( strpos( $block_content, 'class="word-switch' ) === false ) {
 		return $block_content;
 	}
 
@@ -83,7 +83,7 @@ function word_switcher_render_block( $block_content, $block ) {
 	while ( $processor->next_tag(
 		array(
 			'tag_name'   => 'span',
-			'class_name' => 'word-switcher',
+			'class_name' => 'word-switch',
 		)
 	) ) {
 		// Add Interactivity API directives
@@ -101,7 +101,7 @@ function word_switcher_render_block( $block_content, $block ) {
 
 	// Return to parent and add Interactivity API attributes.
 	$processor->seek( 'parent' );
-	$processor->set_attribute( 'data-wp-interactive', 'devblog/word-switcher' );
+	$processor->set_attribute( 'data-wp-interactive', 'wpdevagent/word-switch' );
 	$processor->set_attribute( 'data-wp-init', 'callbacks.init' );
 	$processor->set_attribute(
 		'data-wp-context',
@@ -122,5 +122,5 @@ function word_switcher_render_block( $block_content, $block ) {
 	return $processor->get_updated_html();
 }
 
-add_filter( 'render_block_core/paragraph', 'word_switcher_render_block', 10, 2 );
-add_filter( 'render_block_core/heading', 'word_switcher_render_block', 10, 2 );
+add_filter( 'render_block_core/paragraph', 'word_switch_render_block', 10, 2 );
+add_filter( 'render_block_core/heading', 'word_switch_render_block', 10, 2 );

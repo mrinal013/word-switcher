@@ -1,6 +1,6 @@
 import { store, getContext } from "@wordpress/interactivity";
 
-store("devblog/word-switcher", {
+store("wpdevagent/word-switch", {
   state: {
     get currentWord() {
       const context = getContext();

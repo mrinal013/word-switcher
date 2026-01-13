@@ -122,11 +122,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const WORD_SWITCHER_FORMAT_TYPE = "word-switcher/format-type-delimiter";
-(0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.registerFormatType)(WORD_SWITCHER_FORMAT_TYPE, {
-  title: "Word Switcher",
+const WORD_SWITCH_FORMAT_TYPE = "word-switch/format-type-delimiter";
+(0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.registerFormatType)(WORD_SWITCH_FORMAT_TYPE, {
+  title: "Word Switch",
   tagName: "span",
-  className: "word-switcher",
+  className: "word-switch",
   edit: ({
     isActive,
     onChange,
@@ -137,7 +137,7 @@ const WORD_SWITCHER_FORMAT_TYPE = "word-switcher/format-type-delimiter";
       title: "Mark as Word Switcher Area",
       onClick: () => {
         onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.toggleFormat)(value, {
-          type: WORD_SWITCHER_FORMAT_TYPE
+          type: WORD_SWITCH_FORMAT_TYPE
         }));
       },
       isActive: isActive

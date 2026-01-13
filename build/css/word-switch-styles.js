@@ -17,12 +17,12 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!*************************************************!*\
-  !*** ./resources/css/word-switcher-styles.scss ***!
-  \*************************************************/
+/*!************************************************!*\
+  !*** ./resources/scss/word-switch-styles.scss ***!
+  \************************************************/
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 /******/ })()
 ;
-//# sourceMappingURL=word-switcher-styles.js.map
+//# sourceMappingURL=word-switch-styles.js.map

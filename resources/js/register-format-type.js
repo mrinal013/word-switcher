@@ -1,12 +1,12 @@
 import { toggleFormat, registerFormatType } from "@wordpress/rich-text";
 import { RichTextToolbarButton } from "@wordpress/block-editor";
 
-const WORD_SWITCHER_FORMAT_TYPE = "word-switcher/format-type-delimiter";
+const WORD_SWITCH_FORMAT_TYPE = "word-switch/format-type-delimiter";
 
-registerFormatType(WORD_SWITCHER_FORMAT_TYPE, {
-  title: "Word Switcher",
+registerFormatType(WORD_SWITCH_FORMAT_TYPE, {
+  title: "Word Switch",
   tagName: "span",
-  className: "word-switcher",
+  className: "word-switch",
   edit: ({ isActive, onChange, value }) => {
     return (
       <RichTextToolbarButton
@@ -15,7 +15,7 @@ registerFormatType(WORD_SWITCHER_FORMAT_TYPE, {
         onClick={() => {
           onChange(
             toggleFormat(value, {
-              type: WORD_SWITCHER_FORMAT_TYPE,
+              type: WORD_SWITCH_FORMAT_TYPE,
             })
           );
         }}

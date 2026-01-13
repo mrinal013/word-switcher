@@ -1,0 +1,36 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/scss/word-switch-styles.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+.word-switcher {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+  transform-origin: center;
+  position: relative;
+  opacity: 1;
+  will-change: opacity, transform;
+  transform: scale(1) rotateY(0deg);
+}
+.word-switcher.fade {
+  opacity: 0;
+  transform: scale(0.7) rotateY(90deg);
+}
+.word-switcher:not(.fade) {
+  opacity: 0;
+  transform: scale(0.7) rotateY(-90deg);
+  animation: flipIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes flipIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotateY(-90deg);
+  }
+  60% {
+    transform: scale(1.05) rotateY(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+/*# sourceMappingURL=word-switch-styles.css.map*/
