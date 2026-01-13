@@ -10,6 +10,12 @@ A WordPress plugin that add word switching functionality in Gutenberg paragraph 
 
 2. Activate the plugin in your WordPress admin panel
 
+## How to use?
+
+Select words that you want to switch. Then, click Mark as Word Switcher Area from word formatter toolbar.
+
+![Word Switcher](word-switcher.png?raw=true "Word Switcher")
+
 ## Development
 
 1. Clone this repository into your WordPress plugins directory:
