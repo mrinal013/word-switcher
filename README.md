@@ -16,13 +16,13 @@ A WordPress plugin that add word switching functionality in Gutenberg paragraph 
 
    ```bash
    cd wp-content/plugins
-   git clone [repository-url] word-switcher-core-blocks
+   git clone [repository-url] word-switcher
    ```
 
 2. Install dependencies:
 
    ```bash
-   cd word-switcher-core-blocks
+   cd word-switcher
    npm install
    ```
 

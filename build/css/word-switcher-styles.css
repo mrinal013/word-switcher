@@ -1,1 +1,36 @@
-.word-switcher{display:inline-block;opacity:1;position:relative;transform:scale(1) rotateY(0deg);transform-origin:center;transition:all .4s cubic-bezier(.34,1.56,.64,1);will-change:opacity,transform}.word-switcher.fade{opacity:0;transform:scale(.7) rotateY(90deg)}.word-switcher:not(.fade){animation:flipIn .5s cubic-bezier(.34,1.56,.64,1) forwards;opacity:0;transform:scale(.7) rotateY(-90deg)}@keyframes flipIn{0%{opacity:0;transform:scale(.7) rotateY(-90deg)}60%{transform:scale(1.05) rotateY(10deg)}to{opacity:1;transform:scale(1) rotateY(0deg)}}
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/css/word-switcher-styles.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+.word-switcher {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+  transform-origin: center;
+  position: relative;
+  opacity: 1;
+  will-change: opacity, transform;
+  transform: scale(1) rotateY(0deg);
+}
+.word-switcher.fade {
+  opacity: 0;
+  transform: scale(0.7) rotateY(90deg);
+}
+.word-switcher:not(.fade) {
+  opacity: 0;
+  transform: scale(0.7) rotateY(-90deg);
+  animation: flipIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes flipIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotateY(-90deg);
+  }
+  60% {
+    transform: scale(1.05) rotateY(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+/*# sourceMappingURL=word-switcher-styles.css.map*/
