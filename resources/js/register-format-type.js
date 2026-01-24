@@ -1,14 +1,6 @@
 import { toggleFormat, registerFormatType } from "@wordpress/rich-text";
 import { RichTextToolbarButton } from "@wordpress/block-editor";
 
-/**
- * ToolbarButton can be used to add actions to a toolbar.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/components/
- */
-import { Toolbar, ToolbarButton } from "@wordpress/components";
-import { addFilter } from "@wordpress/hooks";
-
 const WORD_SWITCH_FORMAT_TYPE = "word-switch/format-type-delimiter";
 const WORD_SWITCH_FORMAT_TYPE_WRAP = "word-switch/format-type-wrap";
 
@@ -49,7 +41,7 @@ const MyMultiTagButton = ({ isActive, value, onChange }) => {
     <RichTextToolbarButton
       icon="editor-code"
       onClick={onToggle}
-      title="Word Wrap"
+      title="Word Switch"
       isActive={isActive}
     />
   );
