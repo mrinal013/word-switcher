@@ -2,10 +2,11 @@
 /**
  * Plugin Name:         Word Switch
  * Description:         Add word switching capability.
- * Version:             1.0.1
+ * Version:             1.0.2
  * Requires at least:   6.7
  * Requires PHP:        7.4
  * Author:              mrinal013
+ * Author URI:          https://www.wpdevagent.com
  * License:             GPLv2
  * Text Domain:         word-switch
  */
