@@ -1,12 +1,51 @@
 import { toggleFormat, registerFormatType } from "@wordpress/rich-text";
+
+/**
+ * Add a format button to the rich text
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#richtexttoolbarbutton
+ */
 import { RichTextToolbarButton } from "@wordpress/block-editor";
+
+/**
+ * Custom react hook for retrieving props from registered selectors.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
+ */
+import { useSelect } from "@wordpress/data";
 
 const WORD_SWITCH_FORMAT_TYPE = "word-switch/format-type-delimiter";
 const WORD_SWITCH_FORMAT_TYPE_WRAP = "word-switch/format-type-wrap";
 
 const MyMultiTagButton = ({ isActive, value, onChange }) => {
+  const selectedBlock = useSelect((select) => {
+    return select("core/block-editor").getSelectedBlock();
+  }, []);
+
+  const permittedBlock = ["core/paragraph", "core/heading"];
+
+  if (selectedBlock && permittedBlock.includes(selectedBlock.name) === false) {
+    return null;
+  }
+
   const selectedString = value.text.substring(value.start, value.end);
   const wordsArray = selectedString.split(",");
+
+  value.activeFormats.forEach(function (format) {
+    let type = format?.type;
+    if (!type.includes("word-switch/")) {
+      let tagName = format?.tagName;
+      let style = format?.attributes?.style;
+      let className = format?.attributes?.className;
+      console.log(format);
+      wordsArray.map((word, index) => {
+        return (wordsArray[
+          index
+        ] = `<${tagName} class=${className} style=${style}>${word}</${tagName}>`);
+      });
+    }
+  });
+
   const obj = {
     words: wordsArray,
     currentIndex: 0,
