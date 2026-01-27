@@ -18,7 +18,7 @@ selected words for more engaging and flexible content presentation.
 
 With this plugin, WordPress gutenberg editor’s paragraph and heading block get an extra format named ‘word switch’.
 
-[![Word Switch plugin WordPress](https://img.youtube.com/vi/6sqoOOXi7kQ/0.jpg)(https://www.youtube.com/watch?v=6sqoOOXi7kQ)]
+[![Word Switch plugin WordPress](https://img.youtube.com/vi/6sqoOOXi7kQ/0.jpg)](https://www.youtube.com/watch?v=6sqoOOXi7kQ)
 
 Currently, the comma ( , ) is the only supported separator. Support for custom and flexible separator characters is under development and will be available soon.
 
