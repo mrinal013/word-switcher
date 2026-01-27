@@ -1,37 +1,48 @@
+/**
+ * Toggles a format object to a Rich Text value at the current selection.
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-rich-text/#toggleformat
+ *
+ * Registers a new format provided a unique name and an object defining its behavior.
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-rich-text/#registerformattype
+ */
 import { toggleFormat, registerFormatType } from "@wordpress/rich-text";
+
+/**
+ * Add a format button to the rich text
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#richtexttoolbarbutton
+ */
 import { RichTextToolbarButton } from "@wordpress/block-editor";
+
+/**
+ * Custom react hook for retrieving props from registered selectors.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
+ */
+import { useSelect } from "@wordpress/data";
 
 const WORD_SWITCH_FORMAT_TYPE = "word-switch/format-type-delimiter";
 const WORD_SWITCH_FORMAT_TYPE_WRAP = "word-switch/format-type-wrap";
 
 const MyMultiTagButton = ({ isActive, value, onChange }) => {
-  const selectedString = value.text.substring(value.start, value.end);
-  const wordsArray = selectedString.split(",");
-  const obj = {
-    words: wordsArray,
-    currentIndex: 0,
-    isFading: false,
-  };
+  const selectedBlock = useSelect((select) => {
+    return select("core/block-editor").getSelectedBlock();
+  }, []);
 
-  const objString = JSON.stringify(obj);
+  const permittedBlock = ["core/paragraph", "core/heading"];
+
+  if (selectedBlock && permittedBlock.includes(selectedBlock.name) === false) {
+    return null;
+  }
 
   const onToggle = () => {
     // Apply the first format
     let nextValue = toggleFormat(value, {
       type: WORD_SWITCH_FORMAT_TYPE_WRAP,
-      attributes: {
-        "data-wp-interactive": "wpdevagent/word-switch",
-        "data-wp-init": "callbacks.init",
-        "data-wp-context": objString,
-      },
     });
     // Apply the second format to the result of the first
     nextValue = toggleFormat(nextValue, {
       type: WORD_SWITCH_FORMAT_TYPE,
-      attributes: {
-        "data-wp-text": "state.currentWord",
-        "data-wp-class--fade": "context.isFading",
-      },
     });
 
     onChange(nextValue);

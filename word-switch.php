@@ -27,6 +27,11 @@ if ( ! defined( 'WORD_SWITCH_STYLES' ) ) {
 	define( 'WORD_SWITCH_STYLES', 'word-switch-styles' );
 }
 
+/**
+ * Register assets.
+ *
+ * @since 1.0
+ */
 function word_switch_register_assets() {
 	$dir = plugin_dir_path( __FILE__ );
 	// Register the Format API script for the editor.
@@ -59,6 +64,11 @@ function word_switch_register_assets() {
 }
 add_action( 'init', 'word_switch_register_assets' );
 
+/**
+ * Enqueue editor site scrpts.
+ *
+ * @since 1.0
+ */
 function word_switch_enqueue_block_editor_assets() {
 	wp_enqueue_script( WORD_SWITCH_SCRIPT );
 	wp_enqueue_script( WORD_SWITCH_IAPI_SCRIPT );
@@ -66,12 +76,65 @@ function word_switch_enqueue_block_editor_assets() {
 
 add_action( 'enqueue_block_editor_assets', 'word_switch_enqueue_block_editor_assets' );
 
+/**
+ * Render paragraph and heading tags output.
+ *
+ * @param string $block_content The block content.
+ * @param array  $block The full block, including name and attributes.
+ *
+ * @since 1.0
+ */
 function word_switch_render_block( $block_content, $block ) {
 	if ( strpos( $block_content, 'class="word-switch-wrap' ) === false ) {
 		return $block_content;
 	}
 
 	$processor = new WP_HTML_Tag_Processor( $block_content );
+
+	while ( $processor->next_tag(
+		array(
+			'tag_name'   => 'span',
+			'class_name' => 'word-switch-wrap',
+		)
+	) ) {
+
+		$processor->set_bookmark( 'parent' );
+		$words = array();
+
+		// Find all spans with word-switch class.
+		if ( $processor->next_tag(
+			array(
+				'tag_name'   => 'span',
+				'class_name' => 'word-switch',
+			)
+		) ) {
+			// Add Interactivity API directives .
+			$processor->set_attribute( 'data-wp-text', 'state.currentWord' );
+			$processor->set_attribute( 'data-wp-class--fade', 'context.isFading' );
+
+			// Extract the comma - separated words .
+			if ( $processor->next_token() ) {
+				$text_content = $processor->get_modifiable_text();
+				if ( $text_content ) {
+					$words = array_filter( array_map( 'trim', explode( ',', $text_content ) ) );
+				}
+			}
+		}
+
+		$processor->seek( 'parent' );
+		$processor->set_attribute( 'data-wp-interactive', 'wpdevagent/word-switch' );
+		$processor->set_attribute( 'data-wp-init', 'callbacks.init' );
+		$processor->set_attribute(
+			'data-wp-context',
+			wp_json_encode(
+				array(
+					'words'        => $words,
+					'currentIndex' => 0,
+					'isFading'     => false,
+				)
+			)
+		);
+	}
 
 	if ( ! is_admin() ) {
 		wp_enqueue_script_module( WORD_SWITCH_IAPI_SCRIPT );

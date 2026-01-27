@@ -10,6 +10,7 @@ store("wpdevagent/word-switch", {
   callbacks: {
     init() {
       const context = getContext();
+
       setInterval(() => {
         context.isFading = true;
         setTimeout(() => {
