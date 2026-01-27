@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         Word Switch
  * Description:         Add word switching capability.
- * Version:             1.0.2
+ * Version:             1.1.0
  * Requires at least:   6.7
  * Requires PHP:        7.4
  * Author:              mrinal013
