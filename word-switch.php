@@ -8,6 +8,7 @@
  * Author:              mrinal013
  * Author URI:          https://www.wpdevagent.com
  * License:             GPLv2
+ * License URI:		http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:         word-switch
  */
 
